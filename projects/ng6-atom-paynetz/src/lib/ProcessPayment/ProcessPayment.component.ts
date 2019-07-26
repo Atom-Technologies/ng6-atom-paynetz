@@ -66,6 +66,10 @@ export class ProcessPaymentComponent implements OnInit {
     this.txnid = txnid;
   }
 
+  setCustAcc (custacc: string) {
+    this.custacc = custacc;
+  }
+
   setAmount (amt: string) {
     this.amt = amt;
   }
@@ -104,7 +108,7 @@ export class ProcessPaymentComponent implements OnInit {
 
  generateChecksum() {
    this.signature = this.loginId + this.password + this.txntype + this.prodid + this.txnid + this.amt + this.txncurr;
-   return hash.sha512(this.signature);
+   return hash.sha512.hmac(this.requestHashKey, this.signature);
  }
 
  payNow() {
@@ -117,7 +121,7 @@ export class ProcessPaymentComponent implements OnInit {
   urlToPay += '&amt=' + this.amt;
   urlToPay += '&txncurr=' + this.txncurr;
   urlToPay += '&txnscamt=' + this.txnscamt;
-  urlToPay += '&clientcode=' + atob(this.txnscamt);
+  urlToPay += '&clientcode=' + btoa(this.clientCode);
   urlToPay += '&txnid=' + this.txnid;
   urlToPay += '&date=' + this.formatDate(new Date);
   urlToPay += '&custacc=' + this.custacc;
@@ -127,16 +131,20 @@ export class ProcessPaymentComponent implements OnInit {
   urlToPay += '&udf2=' + this.udf2;
   urlToPay += '&udf3=' + this.udf3;
   urlToPay += '&udf4=' + this.udf4;
-  return urlToPay;
+  return encodeURI(urlToPay);
  }
 
  formatDate(date: any) {
-
     const day = date.getDate();
-    const monthIndex = date.getMonth();
+    let monthIndex = date.getMonth() + 1;
     const year = date.getFullYear();
-
-    return day + ' ' + monthIndex + 1 + ' ' + year;
+    const second = date.getSeconds();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    if  (monthIndex < 10 ) {
+      monthIndex = '0' + monthIndex;
+    }
+    return day + '/' + Number(monthIndex) + '/' + year + ' ' + hours + ':' + minutes + ':' + second;
   }
 
 }

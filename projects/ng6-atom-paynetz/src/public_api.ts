@@ -3,3 +3,5 @@
  */
 
 export * from './lib/ng6-atom-paynetz.module';
+// components
+export * from './lib/ProcessPayment/ProcessPayment.component';
