@@ -6,6 +6,7 @@ import * as hash from 'js-sha512';
   templateUrl: './ProcessPayment.component.html',
   styleUrls: ['./ProcessPayment.component.scss']
 })
+
 export class ProcessPaymentComponent implements OnInit {
 
   private loginId = '';
@@ -83,7 +84,7 @@ export class ProcessPaymentComponent implements OnInit {
   }
 
   setReturnUrl (returnURL: string) {
-    this.returnURL = returnURL;
+    this.returnURL = 'https://www.atomtech.in/angular-kit-handle/params_response.php?myroute=' + returnURL;
   }
 
   setTxnsCamt (txnscamt: string) {
@@ -111,6 +112,8 @@ export class ProcessPaymentComponent implements OnInit {
    return hash.sha512.hmac(this.requestHashKey, this.signature);
  }
 
+
+
  payNow() {
 
   let urlToPay = this.url;
@@ -132,6 +135,23 @@ export class ProcessPaymentComponent implements OnInit {
   urlToPay += '&udf3=' + this.udf3;
   urlToPay += '&udf4=' + this.udf4;
   return encodeURI(urlToPay);
+ }
+
+ validateResponse (mmp_txn: any, mer_txn: any, f_code: any, prod: any, discriminator: any, amt: any, bank_txn: any, signature: any) {
+   const string_verify = mmp_txn + mer_txn + f_code + prod + discriminator + amt + bank_txn;
+   const sig = hash.sha512.hmac(this.responseHashKey, string_verify);
+
+   if (signature === sig) {
+      return {
+        'status' : true,
+        'message' : 'Signature matched = ' + sig + ' = ' + this.responseHashKey
+      };
+   } else {
+     return {
+      'status' : false,
+      'message' : 'Signature mismatched = ' + sig + ' = ' + this.responseHashKey
+    };
+   }
  }
 
  formatDate(date: any) {

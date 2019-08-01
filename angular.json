@@ -132,7 +132,7 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/ng6-atom-paynetz/tsconfig.lib.json",
-            "project": "projects/ng6-atom-paynetz/ng-package.json"
+            "project": "projects/ng6-atom-paynetz/ng-package.json",
           },
           "configurations": {
             "production": {
