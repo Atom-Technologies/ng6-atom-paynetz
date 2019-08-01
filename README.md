@@ -104,6 +104,7 @@ setTxnId |  | yes | It will set the transaction id and it should be unique
 setTxnType |  | yes | It will set the transaction type e.g. CC,DC,NBFundTransfer
 setTxnsCamt |  | yes | It will set the Customer Account No. if you are Broker or Reseller for test use "0"
 payNow |  |  | It will generate the url for payment
+validateResponse |  |  | Validate the response using signature
 
 
 
