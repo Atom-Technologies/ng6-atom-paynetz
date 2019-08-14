@@ -43,7 +43,6 @@ export declare class ProcessPaymentComponent implements OnInit {
     setCustomerAddress(udf4: string): void;
     generateChecksum(): string;
     payNow(): Promise<{}>;
-    get_response: () => any;
     validateResponse(mmp_txn: any, mer_txn: any, f_code: any, prod: any, discriminator: any, amt: any, bank_txn: any, signature: any): {
         'status': boolean;
         'message': string;
