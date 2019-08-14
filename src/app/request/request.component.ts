@@ -1,4 +1,4 @@
-import {Component, OnInit, NgModule, Renderer2 } from '@angular/core';
+import { Component, OnInit, NgModule, Renderer2 } from '@angular/core';
 import { ProcessPaymentComponent } from '../../../dist/ng6-atom-paynetz';
 
 @Component({
@@ -7,12 +7,12 @@ import { ProcessPaymentComponent } from '../../../dist/ng6-atom-paynetz';
   styleUrls: ['./request.component.css']
 })
 
-export class RequestComponent  {
+export class RequestComponent {
 
   private url_set = '';
+  private response = '';
   private browser: any;
-  constructor (private renderer: Renderer2) {
-
+  constructor(private renderer: Renderer2) {
 
     const _atom = new ProcessPaymentComponent();
     _atom.setURL('https://paynetzuat.atomtech.in/paynetz/epi/fts');
@@ -32,9 +32,12 @@ export class RequestComponent  {
     _atom.setTxnId('234');
     _atom.setTxnType('NBFundTransfer');
     _atom.setTxnsCamt('0');
-    const url = _atom.payNow();
-    this.url_set = url;
-    location.href = url;
-
-}
+    _atom.payNow().then((v) => {
+      console.log('v', v);
+      this.response = JSON.stringify(v);
+    }).catch((e) => {
+      console.log(e);
+    });
+    // console.log(res1);
+  }
 }

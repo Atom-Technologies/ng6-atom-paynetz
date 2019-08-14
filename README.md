@@ -45,6 +45,9 @@ order number that isreceived.
 Run `ng new myAtomApp`
 
 ## Library Installation
+Dependency 
+
+Install js-sha512 `npm install js-sha512`
 
 Run `npm i ng6-atom-paynetz` to install this library.
 

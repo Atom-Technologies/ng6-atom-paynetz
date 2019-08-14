@@ -56,7 +56,7 @@ Import :
 `import { ProcessPaymentComponent } from 'ng6-atom-paynetz';`
 
 Set the values in your constructor as below :
-```constructor () {
+`constructor () {
     const _atom = new ProcessPaymentComponent();
     _atom.setURL('https://paynetzuat.atomtech.in/paynetz/epi/fts');
     _atom.setLoginid('197');
@@ -76,12 +76,9 @@ Set the values in your constructor as below :
     _atom.setTxnId('234');
     _atom.setTxnType('NBFundTransfer');
     _atom.setTxnsCamt('0');
-    _atom.payNow().then((v) => {
-      this.response = JSON.stringify(v); //this will give you the response from payment gateway
-    }).catch((e) => {
-      console.log(e);
-    });
-  }```
+    const url = _atom.payNow();
+    console.log(url);
+  }`
 
 
 ## Methods
@@ -106,7 +103,7 @@ setReturnUrl |  | yes | It will set Return URl, you will the response from atom 
 setTxnId |  | yes | It will set the transaction id and it should be unique
 setTxnType |  | yes | It will set the transaction type e.g. CC,DC,NBFundTransfer
 setTxnsCamt |  | yes | It will set the Customer Account No. if you are Broker or Reseller for test use "0"
-payNow |  |  | It is a promise function which will resolve the reponse from the payment gateway.
+payNow |  |  | It will generate the url for payment
 
 
 

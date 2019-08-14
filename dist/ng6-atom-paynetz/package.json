@@ -1,0 +1,35 @@
+{
+  "name": "ng6-atom-paynetz",
+  "version": "1.0.2",
+  "description": "This library briefly describes the mode/ manner of technical integration between Atom Payment Gateway and Merchant Website in respect of powering online transactions by using Angular 6",
+  "keywords": [
+    "Angular 6",
+    "Payment Gateway Library",
+    "atom payment gateway",
+    "angular 6 kit"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Atom-Technologies/ng6-atom-paynetz"
+  },
+  "homepage": "https://www.atomtech.in",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "js-sha512": "0.8.0"
+  },
+  "main": "bundles/ng6-atom-paynetz.umd.js",
+  "module": "fesm5/ng6-atom-paynetz.js",
+  "es2015": "fesm2015/ng6-atom-paynetz.js",
+  "esm5": "esm5/ng6-atom-paynetz.js",
+  "esm2015": "esm2015/ng6-atom-paynetz.js",
+  "fesm5": "fesm5/ng6-atom-paynetz.js",
+  "fesm2015": "fesm2015/ng6-atom-paynetz.js",
+  "typings": "ng6-atom-paynetz.d.ts",
+  "metadata": "ng6-atom-paynetz.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
