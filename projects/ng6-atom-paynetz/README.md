@@ -55,8 +55,29 @@ In  `src/app/app.component.ts`
 Import :
 `import { ProcessPaymentComponent } from 'ng6-atom-paynetz';`
 
-Set the values in your constructor as below :
-```constructor () {
+Set the values in your Request Componen Class as below :
+
+```
+
+  private response = '';
+  private amount: any;
+  private mmp_txn: any;
+  private mer_txn: any;
+  private prod: any;
+  private date: any;
+  private bank_txn: any;
+  private f_code: any;
+  private clientcode: any;
+  private bank_name: any;
+  private merchant_id: any;
+  private discriminator: any;
+  private desc: any;
+  private udf9: any;
+  private signature: any;
+
+
+  constructor() {
+
     const _atom = new ProcessPaymentComponent();
     _atom.setURL('https://paynetzuat.atomtech.in/paynetz/epi/fts');
     _atom.setLoginid('197');
@@ -65,23 +86,71 @@ Set the values in your constructor as below :
     _atom.setCurrency('INR');
     _atom.setAmount('50.00');
     _atom.setCustomerAddress('Address');
-    _atom.setCustomerEmail('myemail@gmail.com');
+    _atom.setCustomerEmail('ankit@gmail.com');
     _atom.setCustomerMobile('1234567890');
-    _atom.setCustomerName('MyFirstName SecondName');
+    _atom.setCustomerName('Ankit');
     _atom.setProdId('NSE');
     _atom.setCustAcc('000000');
     _atom.setRequestHaskKey('KEY123657234');
-    _atom.setResponseHashKey('KEYRESP123657234');
-    _atom.setReturnUrl('https://paynetzuat.atomtech.in/paynetzclient/ResponseParam.jsp');
+    _atom.setReturnUrl('http://localhost:4200/response');
     _atom.setTxnId('234');
     _atom.setTxnType('NBFundTransfer');
+    _atom.setResponseHashKey('KEYRESP123657234');
     _atom.setTxnsCamt('0');
     _atom.payNow().then((v) => {
-      this.response = JSON.stringify(v); //this will give you the response from payment gateway
+      const data1 = v;
+      if (data1['status']) {
+        this.amount = data1['data'].amt;
+        this.mmp_txn = data1['data'].mmp_txn;
+        this.mer_txn = data1['data'].mer_txn;
+        this.prod = data1['data'].prod;
+        this.date = data1['data'].date;
+        this.bank_txn = data1['data'].bank_txn;
+        this.f_code = data1['data'].f_code;
+        this.clientcode = data1['data'].clientcode;
+        this.bank_name = data1['data'].bank_name;
+        this.merchant_id = data1['data'].merchant_id;
+        this.discriminator = data1['data'].discriminator;
+        this.desc = data1['data'].desc;
+        this.udf9 = data1['data'].udf9;
+        this.signature = data1['data'].signature;
+
+        const checkResponse = _atom.validateResponse(
+          this.mmp_txn,
+          this.mer_txn,
+          this.f_code,
+          this.prod,
+          this.discriminator,
+          this.amount,
+          this.bank_txn,
+          this.signature
+        );
+        console.log(checkResponse);
+        if (checkResponse.status) {
+          if (this.f_code === 'F') {
+            this.response = 'Payment is Failed ';
+          } else if (this.f_code === 'C') {
+            this.response = 'Payment is cancelled by user ';
+          } else if (this.f_code === 'Ok') {
+            this.response = 'Payment is sucessfull';
+          } else {
+            this.response = 'Payment is Failed ';
+          }
+        } else {
+          this.response = 'Payment validatio result is false, response is not proper';
+        }
+      } else {
+        this.response = data1['data'];
+      }
+
     }).catch((e) => {
       console.log(e);
     });
-  }```
+
+
+  }
+
+  ```
 
 
 ## Methods
@@ -107,7 +176,7 @@ setTxnId |  | yes | It will set the transaction id and it should be unique
 setTxnType |  | yes | It will set the transaction type e.g. CC,DC,NBFundTransfer
 setTxnsCamt |  | yes | It will set the Customer Account No. if you are Broker or Reseller for test use "0"
 payNow |  |  | It is a promise function which will resolve the reponse from the payment gateway.
-
+validate | | |  This method will validate your response.
 
 
 ## Further help

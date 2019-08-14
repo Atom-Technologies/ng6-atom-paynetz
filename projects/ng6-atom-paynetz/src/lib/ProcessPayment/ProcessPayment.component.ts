@@ -9,25 +9,25 @@ import * as hash from 'js-sha512';
 
 export class ProcessPaymentComponent implements OnInit {
 
-  private loginId = '';
-  private password = '';
-  private url = '';
-  private clientCode = '';
-  private requestHashKey = '';
-  private responseHashKey = '';
-  private prodid = '';
-  private signature = '';
-  private amt = '';
-  private txncurr = '';
-  private txntype = '';
-  private txnscamt = '';
-  private txnid = '';
-  private custacc = '';
-  private returnURL = '';
-  private udf1 = '';
-  private udf2 = '';
-  private udf3 = '';
-  private udf4 = '';
+  private loginId: any;
+  private password: any;
+  private url: any;
+  private clientCode: any;
+  private requestHashKey: any;
+  private responseHashKey: any;
+  private prodid: any;
+  private signature: any;
+  private amt: any;
+  private txncurr: any;
+  private txntype: any;
+  private txnscamt: any;
+  private txnid: any;
+  private custacc: any;
+  private returnURL: any;
+  private udf1: any;
+  private udf2: any;
+  private udf3: any;
+  private udf4: any;
   private childWindow: any;
   private response: any;
   constructor() {
