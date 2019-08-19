@@ -46,7 +46,7 @@ Run `ng new myAtomApp`
 
 ## Library Installation
 
-Run `npm i ng6-atom-paynetz` to install this library.
+Install `npm install js-sha512` and run `npm i ng6-atom-paynetz` to install this library.
 
 ## Component Configuration 
 

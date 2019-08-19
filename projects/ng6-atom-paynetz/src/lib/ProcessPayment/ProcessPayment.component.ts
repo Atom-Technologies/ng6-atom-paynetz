@@ -140,7 +140,7 @@ export class ProcessPaymentComponent implements OnInit {
     let res = null;
 
     const left = (window.screen.width / 2) - ((1200 / 2) + 10);
-    const top = (window.screen.height / 2) - ((850 / 2) + 10);
+    const top = '22%';
 
     const childWindow = window.open(url, 'Atom Paynetz', 'status=no,height=600,width=1200,resizable=yes,left='
       + left + ',top=' + top + ',screenX=' + left + ',screenY='
