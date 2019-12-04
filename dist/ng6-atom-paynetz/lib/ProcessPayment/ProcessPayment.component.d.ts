@@ -15,6 +15,8 @@ export declare class ProcessPaymentComponent implements OnInit {
     private txnid;
     private custacc;
     private returnURL;
+    private mdd;
+    private bankId;
     private udf1;
     private udf2;
     private udf3;
@@ -41,6 +43,8 @@ export declare class ProcessPaymentComponent implements OnInit {
     setCustomerEmail(udf2: string): void;
     setCustomerMobile(udf3: string): void;
     setCustomerAddress(udf4: string): void;
+    setMdd(mdd: string): void;
+    setBankId(bankId: string): void;
     generateChecksum(): string;
     payNow(): Promise<{}>;
     validateResponse(mmp_txn: any, mer_txn: any, f_code: any, prod: any, discriminator: any, amt: any, bank_txn: any, signature: any): {

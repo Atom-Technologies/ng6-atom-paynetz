@@ -24,6 +24,8 @@ export class ProcessPaymentComponent implements OnInit {
   private txnid: any;
   private custacc: any;
   private returnURL: any;
+  private mdd = null;
+  private bankId = null;
   private udf1: any;
   private udf2: any;
   private udf3: any;
@@ -109,6 +111,13 @@ export class ProcessPaymentComponent implements OnInit {
     this.udf4 = udf4;
   }
 
+  setMdd(mdd: string) {
+    this.mdd = mdd;
+  }
+
+  setBankId(bankId: string) {
+    this.bankId = bankId;
+  }
   generateChecksum() {
     this.signature = this.loginId + this.password + this.txntype + this.prodid + this.txnid + this.amt + this.txncurr;
     return hash.sha512.hmac(this.requestHashKey, this.signature);
@@ -136,6 +145,15 @@ export class ProcessPaymentComponent implements OnInit {
     urlToPay += '&udf2=' + this.udf2;
     urlToPay += '&udf3=' + this.udf3;
     urlToPay += '&udf4=' + this.udf4;
+
+    if (this.mdd != null) {
+      urlToPay += '&mdd=' + this.mdd;
+    }
+
+    if (this.bankId != null) {
+      urlToPay += '&bankid=' + this.bankId;
+    }
+
     const url = encodeURI(urlToPay);
     let res = null;
 

@@ -175,6 +175,8 @@ setReturnUrl |  | yes | It will set Return URl, you will the response from atom 
 setTxnId |  | yes | It will set the transaction id and it should be unique
 setTxnType |  | yes | It will set the transaction type e.g. CC,DC,NBFundTransfer
 setTxnsCamt |  | yes | It will set the Customer Account No. if you are Broker or Reseller for test use "0"
+setMdd |  | no | Set paymenthod you want to use. NB for Netbanking, CC for Credit Cards etc..
+setBankId |  | no | Set a code for bank to directly land to the bank page
 payNow |  |  | It is a promise function which will resolve the reponse from the payment gateway.
 validate | | |  This method will validate your response.
 
