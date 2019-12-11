@@ -47,6 +47,8 @@ export class RequestComponent {
     _atom.setTxnType('NBFundTransfer');
     _atom.setResponseHashKey('KEYRESP123657234');
     _atom.setTxnsCamt('0');
+    _atom.setMdd('NB');
+    _atom.setBankId('2001');
     _atom.payNow().then((v) => {
       const data1 = v;
       if (data1['status']) {
